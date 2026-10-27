@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6-mavzu: Jismning bir nechta kuch ta’siridagi harakati</title>
+<style>
+:root{--bg:#f3f7fc;--card:#fff;--ink:#17243a;--muted:#5d6b82;--blue:#2463eb;--teal:#0d9488;--orange:#ea580c;--line:#dbe4f0}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.55}
+header{background:linear-gradient(125deg,#123b82,#2876e8);color:white;padding:30px 18px 34px;text-align:center}
+header .tag{display:inline-block;background:#ffffff24;border:1px solid #ffffff55;border-radius:30px;padding:5px 12px;font-size:13px}
+h1{font-size:clamp(25px,4vw,38px);line-height:1.2;margin:15px auto 10px;max-width:950px}
+header p{margin:0 auto;max-width:800px;color:#e8f0ff}
+main{max-width:1100px;margin:22px auto;padding:0 15px 40px}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}
+nav a{background:white;border:1px solid var(--line);padding:9px 13px;border-radius:10px;text-decoration:none;color:#1747a3;font-weight:bold;font-size:14px}
+section,.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin:0 0 18px;box-shadow:0 5px 18px #17345b0a}
+h2{font-size:23px;margin:0 0 8px;color:#1747a3}h3{font-size:18px;margin:18px 0 8px}
+.lead{color:var(--muted);margin-top:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.formula{background:#eef5ff;border-left:4px solid var(--blue);padding:12px 14px;border-radius:8px;font-size:18px;font-weight:bold}
+.controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:13px;margin:12px 0}
+label{display:block;font-weight:bold;font-size:14px;margin-bottom:5px}
+input[type=range]{width:100%;accent-color:var(--blue)}
+output,.value{font-weight:bold;color:var(--blue)}
+canvas{width:100%;height:280px;display:block;background:linear-gradient(#fbfdff,#f1f6ff);border:1px solid var(--line);border-radius:12px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:12px}
+.stat{background:#f6f9ff;border:1px solid var(--line);border-radius:10px;padding:11px}
+.stat small{display:block;color:var(--muted)}.stat strong{font-size:20px}
+button{background:var(--blue);color:white;border:0;border-radius:9px;padding:10px 15px;font-weight:bold;cursor:pointer;margin:4px 4px 4px 0}
+button.secondary{background:#e8efff;color:#1747a3}button:hover{filter:brightness(.96)}
+.note{background:#fff7ed;border-left:4px solid var(--orange);padding:11px 13px;border-radius:8px}
+.good{background:#ecfdf5;border-left:4px solid var(--teal);padding:11px 13px;border-radius:8px}
+table{width:100%;border-collapse:collapse;margin:10px 0}th,td{padding:10px;border:1px solid var(--line);text-align:left}th{background:#eef5ff}
+.quiz-q{padding:12px 0;border-bottom:1px solid var(--line)}.quiz-q label{font-weight:normal;margin:7px 0}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:8px}
+@media(max-width:600px){section,.panel{padding:15px}canvas{height:240px}nav a{font-size:12px}}
+</style>
+</head>
+<body>
+<header>
+  <span class="tag">FIZIKA • INTERAKTIV DARS</span>
+  <h1>6-mavzu: Jismning bir nechta kuch ta’siridagi harakati</h1>
+  <p>Uchta reja asosida nazariya, formulalar, jonli simulyatsiyalar, animatsiyalar va bilimni tekshirish.</p>
+</header>
+<main>
+<nav>
+  <a href="#reja1">1. Kuchlar va teng ta’sir etuvchi</a>
+  <a href="#reja2">2. Harakat qonunlari</a>
+  <a href="#reja3">3. Masalalar va amaliyot</a>
+  <a href="#test">Bilimni tekshirish</a>
+</nav>
+
+<section id="reja1">
+<h2>1-reja. Jismga ta’sir etuvchi kuchlar va ularning teng ta’sir etuvchisi</h2>
+<p class="lead">Jismga bir vaqtning o‘zida bir nechta kuch ta’sir qilishi mumkin. Ularning umumiy ta’siri vektor yig‘indi — <b>teng ta’sir etuvchi kuch</b> bilan aniqlanadi.</p>
+<div class="grid">
+ <div><div class="formula">F⃗<sub>teng</sub> = F⃗<sub>1</sub> + F⃗<sub>2</sub> + ...</div>
+ <p>Kuchlar bir yo‘nalishda bo‘lsa, modullari qo‘shiladi. Qarama-qarshi yo‘nalishda bo‘lsa, kattasidan kichigi ayriladi. Natijaviy kuch nol bo‘lsa, kuchlar muvozanatlashgan bo‘ladi.</p>
+ <div class="note"><b>Eslab qoling:</b> kuch — vektor kattalik; uning moduli ham, yo‘nalishi ham muhim.</div></div>
+ <div><h3>Misol</h3><p>Jismni o‘ngga 12 N, chapga 5 N kuch tortmoqda. Natijaviy kuch:</p><div class="formula">F<sub>teng</sub> = 12 − 5 = 7 N →</div><p>Demak, jism tezlanishi o‘ng tomonga yo‘naladi.</p></div>
+</div>
+<h3>Simulyatsiya 1 — kuchlar vektorini o‘zgartiring</h3>
+<p>Slayderlarni suring. O‘ngga va chapga yo‘nalgan kuchlar hamda natijaviy kuch strelkalari o‘zgarishini kuzating.</p>
+<div class="controls">
+ <div><label for="rightF">O‘ngga kuch: <output id="rightVal">12 N</output></label><input id="rightF" type="range" min="0" max="20" value="12"></div>
+ <div><label for="leftF">Chapga kuch: <output id="leftVal">5 N</output></label><input id="leftF" type="range" min="0" max="20" value="5"></div>
+</div>
+<canvas id="forceCanvas" aria-label="Kuchlar vektori simulyatsiyasi"></canvas>
+<div class="stats">
+ <div class="stat"><small>Teng ta’sir etuvchi</small><strong id="netF">7 N →</strong></div>
+ <div class="stat"><small>Kuchlar holati</small><strong id="balance">Muvozanatlashmagan</strong></div>
+</div>
+</section>
+
+<section id="reja2">
+<h2>2-reja. Bir nechta kuch ta’sirida jismning harakat qonunlari va Nyuton qonunlari</h2>
+<p class="lead">Nyutonning ikkinchi qonuniga ko‘ra, jismning tezlanishi natijaviy kuchga to‘g‘ri, massa­ga teskari proporsional.</p>
+<div class="grid">
+ <div class="formula">F<sub>teng</sub> = ma &nbsp; → &nbsp; a = F<sub>teng</sub>/m</div>
+ <div><b>Birliklar:</b> kuch — nyuton (N), massa — kilogramm (kg), tezlanish — m/s².</div>
+</div>
+<ul>
+<li><b>Nyutonning I qonuni:</b> natijaviy kuch nol bo‘lsa, jism tinch turadi yoki tekis to‘g‘ri chiziqli harakatini davom ettiradi.</li>
+<li><b>Nyutonning II qonuni:</b> natijaviy kuch jismga tezlanish beradi.</li>
+<li><b>Nyutonning III qonuni:</b> jismlar o‘zaro teng modulli, qarama-qarshi yo‘nalgan kuchlar bilan ta’sirlashadi. Bu kuchlar turli jismlarga ta’sir qiladi.</li>
+</ul>
+<h3>Simulyatsiya 2 — aravachaning tezlanishi</h3>
+<p>Kuch va massani o‘zgartiring, so‘ng “Harakatni boshlash” tugmasini bosing. Aravachaning tezligi natijaviy kuchga qarab o‘zgaradi.</p>
+<div class="controls">
+ <div><label for="pushF">Oldinga kuch: <output id="pushVal">15 N</output></label><input id="pushF" type="range" min="0" max="30" value="15"></div>
+ <div><label for="frictionF">Ishqalanish kuchi: <output id="frictionVal">5 N</output></label><input id="frictionF" type="range" min="0" max="20" value="5"></div>
+ <div><label for="mass">Jism massasi: <output id="massVal">2 kg</output></label><input id="mass" type="range" min="1" max="10" value="2"></div>
+</div>
+<canvas id="motionCanvas" aria-label="Aravacha harakati animatsiyasi"></canvas>
+<div class="stats">
+ <div class="stat"><small>Natijaviy kuch</small><strong id="netMotion">10 N</strong></div>
+ <div class="stat"><small>Tezlanish</small><strong id="accel">5 m/s²</strong></div>
+ <div class="stat"><small>Tezlik</small><strong id="speed">0 m/s</strong></div>
+ <div class="stat"><small>Vaqt</small><strong id="elapsed">0.0 s</strong></div>
+</div>
+<button id="startMotion">▶ Harakatni boshlash</button><button class="secondary" id="pauseMotion">Ⅱ Pauza</button><button class="secondary" id="resetMotion">↺ Qayta boshlash</button>
+<div class="note">Model soddalashtirilgan: natijaviy kuch musbat bo‘lsa, aravacha o‘ngga tezlanadi. Real vaziyatlarda ishqalanish tezlikka va sirtga ham bog‘liq bo‘lishi mumkin.</div>
+</section>
+
+<section id="reja3">
+<h2>3-reja. Bir nechta kuch ta’siridagi harakatga doir masalalar va amaliy misollar</h2>
+<p class="lead">Masala yechish algoritmi: 1) jismga ta’sir etuvchi kuchlarni aniqlash; 2) yo‘nalishlarni belgilash; 3) natijaviy kuchni topish; 4) Nyutonning II qonunini qo‘llash; 5) birlik va javobni tekshirish.</p>
+<h3>Animatsiyali masala</h3>
+<p>3 kg massali aravachaga o‘ngga 18 N, chapga 6 N kuch ta’sir qilmoqda. Ishqalanish hisobga olinmasa, tezlanishni toping.</p>
+<button id="solveBtn">Yechim bosqichlarini ko‘rsatish</button>
+<div id="solution" hidden>
+ <p><b>1-bosqich.</b> Natijaviy kuchni topamiz: F = 18 − 6 = 12 N.</p>
+ <p><b>2-bosqich.</b> Nyutonning II qonuni: a = F/m.</p>
+ <p><b>3-bosqich.</b> a = 12/3 = <b>4 m/s²</b>. Tezlanish o‘ngga yo‘nalgan.</p>
+ <canvas id="problemCanvas" aria-label="Masala yechimi kuchlar animatsiyasi"></canvas>
+</div>
+<h3>Mustaqil ishlash uchun</h3>
+<table>
+<thead><tr><th>№</th><th>Shart</th><th>Toping</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Jismga o‘ngga 20 N, chapga 8 N kuch ta’sir qiladi. Massa 4 kg.</td><td>Natijaviy kuch va tezlanish</td></tr>
+<tr><td>2</td><td>10 kg massali jismga 30 N tortish kuchi va 10 N ishqalanish kuchi ta’sir qiladi.</td><td>Tezlanish</td></tr>
+<tr><td>3</td><td>Natijaviy kuch 0 N bo‘lgan jism 3 m/s tezlik bilan harakatlanmoqda.</td><td>Jism harakati qanday davom etadi?</td></tr>
+</tbody></table>
+<details><summary><b>Mustaqil masalalar javoblari</b></summary>
+<p>1) F = 20 − 8 = 12 N; a = 12/4 = 3 m/s², o‘ngga.</p>
+<p>2) F = 30 − 10 = 20 N; a = 20/10 = 2 m/s².</p>
+<p>3) Jismga boshqa kuchlar ta’sir qilmasa va natijaviy kuch nol bo‘lib qolsa, u 3 m/s tezlik bilan tekis to‘g‘ri chiziqli harakatini davom ettiradi.</p>
+</details>
+</section>
+
+<section id="test">
+<h2>Bilimni tekshirish</h2>
+<p>Har bir savolda bitta javobni tanlang va “Natijani tekshirish” tugmasini bosing.</p>
+<form id="quiz">
+ <div class="quiz-q"><b>1. Jismga 10 N o‘ngga va 10 N chapga kuch ta’sir qilsa, natijaviy kuch qancha?</b>
+ <label><input type="radio" name="q1" value="a"> 20 N</label><label><input type="radio" name="q1" value="b"> 0 N</label><label><input type="radio" name="q1" value="c"> 10 N</label></div>
+ <div class="quiz-q"><b>2. Natijaviy kuch 12 N, massa 3 kg. Tezlanish qancha?</b>
+ <label><input type="radio" name="q2" value="a"> 4 m/s²</label><label><input type="radio" name="q2" value="b"> 36 m/s²</label><label><input type="radio" name="q2" value="c"> 9 m/s²</label></div>
+ <div class="quiz-q"><b>3. Natijaviy kuch nol bo‘lsa, jism qanday harakat qilishi mumkin?</b>
+ <label><input type="radio" name="q3" value="a"> Faqat tezlanadi</label><label><input type="radio" name="q3" value="b"> Faqat to‘xtaydi</label><label><input type="radio" name="q3" value="c"> Tinch turadi yoki tekis to‘g‘ri chiziqli harakat qiladi</label></div>
+ <button type="button" id="checkQuiz">Natijani tekshirish</button><button type="reset" class="secondary" id="clearQuiz">Qayta ishlash</button>
+</form>
+<div id="quizResult" class="good" hidden aria-live="polite"></div>
+</section>
+<footer>6-mavzu • Interaktiv HTML5 o‘quv materiali • Telefon va kompyuterda ishlaydi</footer>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+function arrow(ctx,x1,y1,x2,y2,color,width=4){
+ ctx.save();ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineWidth=width;ctx.lineCap='round';
+ ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+ const a=Math.atan2(y2-y1,x2-x1),h=11;
+ ctx.beginPath();ctx.moveTo(x2,y2);ctx.lineTo(x2-h*Math.cos(a-Math.PI/6),y2-h*Math.sin(a-Math.PI/6));ctx.lineTo(x2-h*Math.cos(a+Math.PI/6),y2-h*Math.sin(a+Math.PI/6));ctx.closePath();ctx.fill();ctx.restore();
+}
+function setupCanvas(c){const dpr=window.devicePixelRatio||1, r=c.getBoundingClientRect();c.width=Math.max(300,r.width*dpr);c.height=Math.max(200,r.height*dpr);const ctx=c.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);return {ctx,w:r.width,h:r.height};}
+function drawForces(){
+ const {ctx,w,h}=setupCanvas($('forceCanvas')),r=+$('rightF').value,l=+$('leftF').value,net=r-l,y=h*.56,cx=w*.5;
+ ctx.clearRect(0,0,w,h);ctx.fillStyle='#52647d';ctx.font='13px Arial';ctx.fillText('Kuchlar masshtabi: uzunlik kuch moduliga mutanosib',14,22);
+ ctx.fillStyle='#a8b8cc';ctx.fillRect(25,y-2,w-50,4);
+ ctx.fillStyle='#dce8f8';ctx.fillRect(cx-25,y-18,50,36);ctx.strokeStyle='#7794bd';ctx.strokeRect(cx-25,y-18,50,36);
+ ctx.fillStyle='#18365f';ctx.font='bold 12px Arial';ctx.textAlign='center';ctx.fillText('JISM',cx,y+5);ctx.textAlign='left';
+ const scale=Math.min((w*.36)/20,9);
+ if(r) {arrow(ctx,cx+26,y-7,cx+26+r*scale,y-7,'#16835e',4);ctx.fillStyle='#16835e';ctx.fillText(r+' N →',cx+30,y-19);}
+ if(l) {arrow(ctx,cx-26,y+8,cx-26-l*scale,y+8,'#db5b22',4);ctx.fillStyle='#db5b22';ctx.fillText('← '+l+' N',Math.max(8,cx-30-l*scale),y+29);}
+ const start=net>=0?cx+26:cx-26, end=cx+26+net*scale;
+ if(Math.abs(net)>.01)arrow(ctx,start,y+65,end,y+65,'#245fe5',5);
+ else {ctx.fillStyle='#245fe5';ctx.fillText('F teng = 0 N',cx-40,y+72);}
+ ctx.fillStyle='#245fe5';ctx.font='bold 14px Arial';ctx.fillText('Natijaviy kuch: '+net+' N',14,h-18);
+ $('rightVal').textContent=r+' N';$('leftVal').textContent=l+' N';$('netF').textContent=Math.abs(net)+' N '+(net>0?'→':net<0?'←':'');
+ $('balance').textContent=net===0?'Muvozanatlashgan':'Muvozanatlashmagan';
+}
+['rightF','leftF'].forEach(id=>$(id).addEventListener('input',drawForces));
+let running=false,vel=0,pos=.16,t=0,last=0,raf=0;
+function params(){return {f:+$('pushF').value,fr:+$('frictionF').value,m:+$('mass').value};}
+function drawMotion(){
+ const {ctx,w,h}=setupCanvas($('motionCanvas')),p=params(),net=p.f-p.fr,a=net/p.m;
+ ctx.clearRect(0,0,w,h);ctx.fillStyle='#d4e2f4';ctx.fillRect(0,h*.72,w,5);
+ ctx.fillStyle='#6f829d';ctx.font='13px Arial';ctx.fillText('Harakat yo‘nalishi →',12,22);
+ const x=40+pos*Math.max(1,w-115),y=h*.72-35;
+ ctx.fillStyle='#e3a33c';ctx.fillRect(x,y,65,30);ctx.fillStyle='#724916';ctx.fillRect(x+8,y+7,49,10);
+ ctx.fillStyle='#2d405a';ctx.beginPath();ctx.arc(x+14,y+32,7,0,Math.PI*2);ctx.arc(x+51,y+32,7,0,Math.PI*2);ctx.fill();
+ if(p.f>0)arrow(ctx,x+30,y-10,x+30+Math.min(80,p.f*2.5),y-10,'#16835e',4);
+ if(p.fr>0)arrow(ctx,x+30,y+10,x+30-Math.min(70,p.fr*2.5),y+10,'#db5b22',4);
+ ctx.fillStyle='#16835e';ctx.fillText('F = '+p.f+' N',12,48);ctx.fillStyle='#db5b22';ctx.fillText('Ishqalanish = '+p.fr+' N',12,68);
+ $('pushVal').textContent=p.f+' N';$('frictionVal').textContent=p.fr+' N';$('massVal').textContent=p.m+' kg';
+ $('netMotion').textContent=net+' N';$('accel').textContent=a.toFixed(2)+' m/s²';$('speed').textContent=vel.toFixed(2)+' m/s';$('elapsed').textContent=t.toFixed(1)+' s';
+}
+function tick(now){if(!running)return;if(!last)last=now;let dt=Math.min((now-last)/1000,.04);last=now;const p=params();vel=Math.max(0,vel+(p.f-p.fr)/p.m*dt);t+=dt;pos+=vel*dt/90;if(pos>.88)pos=.02;drawMotion();raf=requestAnimationFrame(tick);}
+$('startMotion').onclick=()=>{if(!running){running=true;last=0;raf=requestAnimationFrame(tick);}};
+$('pauseMotion').onclick=()=>{running=false;cancelAnimationFrame(raf);last=0;};
+$('resetMotion').onclick=()=>{running=false;cancelAnimationFrame(raf);vel=0;pos=.16;t=0;last=0;drawMotion();};
+['pushF','frictionF','mass'].forEach(id=>$(id).addEventListener('input',drawMotion));
+$('solveBtn').onclick=()=>{const s=$('solution');s.hidden=!s.hidden;$('solveBtn').textContent=s.hidden?'Yechim bosqichlarini ko‘rsatish':'Yechimni yashirish';if(!s.hidden)drawProblem();};
+function drawProblem(){const {ctx,w,h}=setupCanvas($('problemCanvas'));ctx.clearRect(0,0,w,h);const x=w*.5,y=h*.5;ctx.fillStyle='#dce8f8';ctx.fillRect(x-25,y-17,50,34);ctx.strokeStyle='#7794bd';ctx.strokeRect(x-25,y-17,50,34);ctx.fillStyle='#18365f';ctx.font='bold 12px Arial';ctx.textAlign='center';ctx.fillText('3 kg',x,y+4);arrow(ctx,x+28,y-6,x+28+Math.min(100,w*.28),y-6,'#16835e',4);arrow(ctx,x-28,y+7,x-28-Math.min(45,w*.14),y+7,'#db5b22',4);ctx.textAlign='left';ctx.fillStyle='#16835e';ctx.fillText('18 N',x+35,y-18);ctx.fillStyle='#db5b22';ctx.fillText('6 N',Math.max(8,x-80),y+30);ctx.fillStyle='#245fe5';ctx.font='bold 15px Arial';ctx.fillText('F teng = 12 N →     a = 4 m/s²',12,h-20);}
+$('checkQuiz').onclick=()=>{const answers={q1:'b',q2:'a',q3:'c'};let score=0;for(const [q,a] of Object.entries(answers)){const chosen=document.querySelector('input[name="'+q+'"]:checked');if(chosen&&chosen.value===a)score++;}const r=$('quizResult');r.hidden=false;r.textContent='Natija: '+score+'/3 ta to‘g‘ri. '+(score===3?'A’lo! Mavzuni yaxshi tushunibsiz.':score===2?'Yaxshi! Xatolarni ko‘rib, formulalarni takrorlang.':'Formulalarni qayta ko‘rib chiqing va yana urinib ko‘ring.');};
+$('clearQuiz').onclick=()=>{$('quizResult').hidden=true;};
+window.addEventListener('resize',()=>{drawForces();drawMotion();if(!$('solution').hidden)drawProblem();});
+drawForces();drawMotion();
+</script>
+</body>
+</html>
